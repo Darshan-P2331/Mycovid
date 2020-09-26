@@ -9,16 +9,14 @@ class CheckStatus extends Component {
             id: '',
             status: 'Loading...'
         }
+        this.checkstatus = this.checkstatus.bind(this)
     }
-    checkstatus() {
-        const ref = db.ref('Member').child(this.state.id)
-        ref.once("value", snap => {
-            this.setState({
-                state: snap.val().status
-            })
+
+    ref = db.ref('Member')
+
+    async checkstatus() {
+        await this.ref.child(this.state.id).once("value", snap => {
             console.log(snap.val())
-        }, err => {
-                console.log(err)
         })
     }
     render() {

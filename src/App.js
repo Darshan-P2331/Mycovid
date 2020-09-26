@@ -4,6 +4,7 @@ import NavBar from './NavBar'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Home from './Home';
 import LogIn from './LogIn';
+import Contact from './Contact'
 import BedStatus from './BedStatus';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/update" component={LogIn} />
           <Route path="/status" component={CheckStatus} />
           <Route path="/bed" component={BedStatus} />
+          <Route path="/contact" component={Contact} />
         </Switch>
       </Router>
     </div>

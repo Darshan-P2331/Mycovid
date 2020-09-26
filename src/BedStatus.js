@@ -17,12 +17,14 @@ class BedStatus extends Component {
         ref.once("value", snap => {
             let board = []
             snap.forEach(function (data) {
-                const { general, oxygen, ventilator } = data.val()
+                const { General, Oxygen, Ventilator, Location } = data.val()
+                console.log(data.val())
                 board.push({
                     name: data.key,
-                    general,
-                    oxygen,
-                    ventilator
+                    General,
+                    Oxygen,
+                    Ventilator,
+                    Location
                 })
             })
             console.log(board)
@@ -38,29 +40,35 @@ class BedStatus extends Component {
                 <Row>
                     {this.state.board.map((data, index) => (
                         <Col md={6} className='pt-5'>
-                            <Card>
+                            <Card style={{ backgroundColor: '#62aaf7cc'}}>
                                 <Card.Title className="mr-auto p-3">
                                     {data.name}
                             </Card.Title>
                                 <Card.Text>
                                     <Row>
                                         <Col md={6} style={{ paddingLeft: '40px' }} >
-                                            General Beds
+                                            Location
+                                        </Col>
+                                        <Col md={6} style={{ textAlign: 'right', paddingRight: '40px' }}>
+                                            {data.Location}
+                                        </Col>
+                                        <Col md={6} style={{ paddingLeft: '40px' }} >
+                                            General
+                                        </Col>
+                                        <Col md={6} style={{ textAlign: 'right', paddingRight: '40px' }}>
+                                            {data.General}
+                                        </Col>
+                                        <Col md={6} style={{ paddingLeft: '40px' }} >
+                                            Oxygen
                                 </Col>
                                         <Col md={6} style={{ textAlign: 'right', paddingRight: '40px' }}>
-                                            {data.general}
+                                            {data.Oxygen}
                                 </Col>
                                         <Col md={6} style={{ paddingLeft: '40px' }} >
-                                            Beds with Oxygen
+                                            Ventilator
                                 </Col>
                                         <Col md={6} style={{ textAlign: 'right', paddingRight: '40px' }}>
-                                            {data.oxygen}
-                                </Col>
-                                        <Col md={6} style={{ paddingLeft: '40px' }} >
-                                            Beds with ventilator
-                                </Col>
-                                        <Col md={6} style={{ textAlign: 'right', paddingRight: '40px' }}>
-                                            {data.ventilator}
+                                            {data.Ventilator}
                                 </Col>
                                     </Row>
                                 </Card.Text>
